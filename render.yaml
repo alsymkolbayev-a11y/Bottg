@@ -2,7 +2,7 @@ services:
   - type: worker
     name: ai-telegram-bot
     runtime: node
-    buildCommand: npm install -g pnpm@10 && pnpm install --no-frozen-lockfile --ignore-workspace-root-check && pnpm --filter @workspace/api-server run build
+    buildCommand: npm install -g pnpm@10 && pnpm install --no-frozen-lockfile --ignore-workspace-root-check && cd artifacts/api-server && node build.mjs
     startCommand: node --enable-source-maps artifacts/api-server/dist/index.mjs
     envVars:
       - key: NODE_ENV
