@@ -1,0 +1,15 @@
+services:
+  - type: worker
+    name: ai-telegram-bot
+    runtime: node
+    buildCommand: npm install -g pnpm@10 && pnpm install --no-frozen-lockfile --ignore-workspace-root-check && pnpm --filter @workspace/api-server run build
+    startCommand: node --enable-source-maps artifacts/api-server/dist/index.mjs
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
